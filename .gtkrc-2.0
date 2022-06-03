@@ -1,0 +1,3 @@
+include ".gtkrc-xfce"
+gtk-icon-theme-name="kora"` 
+gtk-theme-name="Dracula"O
