@@ -139,7 +139,7 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-	wallpaper='/home/jonathan/Pictures/Wallpapers/wallpaper2you_252158.jpg',
+	wallpaper='/home/jonathan/Pictures/Wallpapers/Screenshot from 2021-12-13 19-29-22.jpg',
 	wallpaper_mode='stretch',
         top=bar.Bar(
             [
@@ -156,9 +156,11 @@ screens = [
                 # widget.TextBox("default config", name="default"),
                 # widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
                 widget.Systray(),
+		widget.CPU(foreground="#8be9fd"),
 		widget.CPUGraph(),
-		widget.Memory(foreground="#ffb86c"),
-                widget.Clock(format="%Y-%m-%d %a %I:%M %p", foreground="#8be9fd"),
+		widget.Memory(foreground="#ff79c6"),
+		widget.MemoryGraph(),
+                widget.Clock(format="%Y-%m-%d %a %I:%M %p", foreground="#50fa7b"),
                 widget.QuickExit(foreground="#ff5555"),
             ],
             24,
