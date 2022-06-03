@@ -1,4 +1,4 @@
-# Copyrightþ (c) 2010 Aldo Cortesi
+# CopyrightÃ¾ (c) 2010 Aldo Cortesi
 # Copyright (c) 2010, 2014 dequis
 # Copyright (c) 2012 Randall Ma
 # Copyright (c) 2012-2014 Tycho Andersen
@@ -72,15 +72,19 @@ keys = [
         desc="Toggle between split and unsplit sides of stack",
     ),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
-    Key([mod], "d", lazy.spawn("rofi -modi drun -show drun"), desc="Launch rofi"),
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+    # My own keybindings
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    Key([mod], "d", lazy.spawn("rofi -modi drun -show drun"), desc="Launch rofi"),
     Key([mod], "F8", lazy.spawn("amixer -D pulse sset Master 5%+"), desc="Raise volume 5%"),
     Key([mod], "F7", lazy.spawn("amixer -D pulse sset Master 5%-"), desc="Lower volume 5%"),
+    Key([mod], "f", lazy.spawn("thunar"), desc="Launch thunar file manager"),
+    Key([mod], "b", lazy.spawn("firefox"), desc="Launch firefox www browser"),
+    Key([mod], "c", lazy.spawn("compton"), desc="Launch Compton"),
 
 ]
 
