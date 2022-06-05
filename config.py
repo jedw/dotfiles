@@ -80,8 +80,10 @@ keys = [
     # My own keybindings
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     Key([mod], "d", lazy.spawn("rofi -modi drun -show drun"), desc="Launch rofi"),
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -D pulse sset Master 5%+"), desc="Raise volume 5%"),
-    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -D pulse sset Master 5%-"), desc="Lower volume 5%"),
+    Key([mod], "F8", lazy.spawn("amixer -D pulse sset Master 5%+"), desc="Raise volume 5%"),
+    Key([mod], "F7", lazy.spawn("amixer -D pulse sset Master 5%-"), desc="Lower volume 5%"),
+    # Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -D pulse sset Master 5%+"), desc="Raise volume 5%"),
+    # Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -D pulse sset Master 5%-"), desc="Lower volume 5%"),
     Key([mod], "f", lazy.spawn("thunar"), desc="Launch thunar file manager"),
     Key([mod], "b", lazy.spawn("firefox"), desc="Launch firefox www browser"),
     Key([mod], "c", lazy.spawn("compton"), desc="Launch Compton"),
@@ -116,18 +118,19 @@ for i in groups:
 
 layouts = [
     layout.Columns(border_focus="#ff5555", border_normal="#44475a", border_focus_stack="#ff5555", border_width=4),
-    layout.MonadTall(border_focus='#ff5555', border_normal='#44475a', border_width=4),
+    # layout.MonadTall(border_focus='#ff5555', border_normal='#44475a', border_width=4),
+    layout.Floating(),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
-    layout.Stack(num_stacks=2),
-    layout.Bsp(),
-    layout.Matrix(),
-    layout.MonadWide(),
-    layout.RatioTile(),
-    layout.Tile(),
-    layout.TreeTab(),
-    layout.VerticalTile(),
-    layout.Zoomy(),
+    # layout.Stack(num_stacks=2),
+    # layout.Bsp(),
+    # layout.Matrix(),
+    # layout.MonadWide(),
+    # layout.RatioTile(),
+    # layout.Tile(),
+    # layout.TreeTab(),
+    # layout.VerticalTile(),
+    # layout.Zoomy(),
 ]
 
 widget_defaults = dict(
@@ -139,10 +142,9 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-	wallpaper='/home/jonathan/Pictures/Wallpapers/Screenshot from 2021-12-13 19-29-22.jpg',
-	wallpaper_mode='stretch',
         top=bar.Bar(
             [
+		widget.Spacer(length=10),
                 widget.CurrentLayout(),
                 widget.GroupBox(background="#282a36"),
                 widget.Prompt(),
@@ -157,12 +159,12 @@ screens = [
                 # widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
                 widget.Systray(),
 		widget.CPU(foreground="#8be9fd"),
-		widget.CPUGraph(),
+		widget.CPUGraph(type="line", graph_color="8be9fd"),
 		widget.Memory(foreground="#ff79c6"),
-		widget.MemoryGraph(),
-		widget.Battery(foreground="#f1fa8c"),
+		widget.MemoryGraph(type="line", graph_color="ff79c6"),
                 widget.Clock(format="%d/%m/%y %H:%M", foreground="#50fa7b"),
-                widget.QuickExit(foreground="#ff5555"),
+                widget.QuickExit(foreground="#ff5555", default_text="[X]", countdown_format="[{}]"),
+		widget.Spacer(length=10),
             ],
             24,
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
