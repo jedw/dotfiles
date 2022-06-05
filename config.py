@@ -87,7 +87,7 @@ keys = [
     Key([mod], "f", lazy.spawn("thunar"), desc="Launch thunar file manager"),
     Key([mod], "b", lazy.spawn("firefox"), desc="Launch firefox www browser"),
     Key([mod], "c", lazy.spawn("compton"), desc="Launch Compton"),
-
+    Key([mod, "shift"], "space", lazy.window.toggle_floating(), desc='Toggle floating'),
 ]
 
 groups = [Group(i) for i in "123456789"]
@@ -117,10 +117,10 @@ for i in groups:
     )
 
 layouts = [
-    layout.Columns(border_focus="#ff5555", border_normal="#44475a", border_focus_stack="#ff5555", border_width=4),
+    layout.Columns(border_focus="#ff5555", border_normal="#44475a", border_focus_stack="#ff5555", border_width=4, margin=5),
     # layout.MonadTall(border_focus='#ff5555', border_normal='#44475a', border_width=4),
     layout.Floating(),
-    layout.Max(),
+    layout.Max(margin=5),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
