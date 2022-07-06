@@ -32,9 +32,7 @@ from libqtile import hook
 from libqtile.widget import CPUGraph
 from libqtile.widget import Memory
 
-#@hook.subscribe.startup_once
-#def autostart():
-#   lazy.spawn("firefox")
+
 
 mod = "mod4"
 terminal = guess_terminal()
@@ -164,6 +162,7 @@ screens = [
 				widget.MemoryGraph(type="line", graph_color="#bd93f9", background="#282a36"),
 				widget.Clock(format="%d/%m/%y %H:%M", foreground="#282a36", background="#f1fa8c"),
 				# can't get this to work widget.TextBox(text='\u25C0', background="#f1fa8c", foreground="#ff5555", padding=0, fontsize=24, font="sans"),
+				widget.PulseVolume(fmt="\u266A {}", background="#282a36", foreground="#F1FA8C"),
 				widget.QuickExit(foreground="#282a36", background="#ff5555", default_text="[X]", countdown_format="[{}]"),
 				# widget.Spacer(length=10),
             ],
@@ -218,4 +217,9 @@ wl_input_rules = None
 #
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
+
+@hook.subscribe.startup_once
+def autostart():
+	lazy.spawn("firefox")
+	
 wmname = "LG3D"
