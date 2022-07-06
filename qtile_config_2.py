@@ -136,7 +136,7 @@ layouts = [
 widget_defaults = dict(
     font="sans",
     fontsize=12,
-    padding=3,
+    padding=6,
 )
 extension_defaults = widget_defaults.copy()
 
@@ -144,34 +144,34 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-		widget.Spacer(length=10),
-        widget.CurrentLayout(),
-        widget.GroupBox(background="#282a36"),
-        widget.Prompt(),
-        widget.WindowName(background="#6272a4"),
-        widget.Chord(
-            chords_colors={
-                "launch": ("#ff0000", "#ffffff"),
-            },
-            name_transform=lambda name: name.upper(),
-        ),
-        # widget.TextBox("default config", name="default"),
-        # widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
-        widget.Systray(),
-		widget.CPU(foreground="#282a36", background="#8be9fd"),
-		widget.CPUGraph(type="line", graph_color="8be9fd", background="#282a36"),
-		widget.Memory(foreground="#282a36", background="#bd93f9"),
-		widget.MemoryGraph(type="line", graph_color="#bd93f9", background="#282a36"),
-        widget.Clock(format="%d/%m/%y %H:%M", foreground="#282a36", background="#f1fa8c"),
-        widget.QuickExit(foreground="#282a36", background="ff5555", default_text=" [X] ", countdown_format="[{}]"),
-		widget.Spacer(length=10),
+				# widget.Spacer(length=10),
+				widget.CurrentLayout(),
+				widget.GroupBox(background="#282a36"),
+				widget.Prompt(),
+				widget.WindowName(background="#6272a4"),
+				widget.Chord(
+					chords_colors={
+						"launch": ("#ff0000", "#ffffff"),
+					},
+					name_transform=lambda name: name.upper(),
+				),
+				# widget.TextBox("default config", name="default"),
+				# widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
+				widget.Systray(),
+				widget.CPU(foreground="#282a36", background="#8be9fd"),
+				widget.CPUGraph(type="line", graph_color="#8be9fd", background="#282a36"),
+				widget.Memory(foreground="#282a36", background="#bd93f9"),
+				widget.MemoryGraph(type="line", graph_color="#bd93f9", background="#282a36"),
+				widget.Clock(format="%d/%m/%y %H:%M", foreground="#282a36", background="#f1fa8c"),
+				# can't get this to work widget.TextBox(text='\u25C0', background="#f1fa8c", foreground="#ff5555", padding=0, fontsize=24, font="sans"),
+				widget.QuickExit(foreground="#282a36", background="#ff5555", default_text="[X]", countdown_format="[{}]"),
+				# widget.Spacer(length=10),
             ],
             24,
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
             background="#44475a"
-
-	),
+		),
     ),
 ]
 
