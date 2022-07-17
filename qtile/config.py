@@ -79,11 +79,11 @@ keys = [
     # My own keybindings
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     Key([mod], "d", lazy.spawn("rofi -modi drun -show drun"), desc="Launch rofi"),
-    Key([mod], "F8", lazy.spawn("amixer -D pulse sset Master 5%+"), desc="Raise volume 5%"),
-    Key([mod], "F7", lazy.spawn("amixer -D pulse sset Master 5%-"), desc="Lower volume 5%"),
+    Key([mod], "F2", lazy.spawn("amixer -D pulse sset Master 5%+"), desc="Raise volume 5%"),
+    Key([mod], "F3", lazy.spawn("amixer -D pulse sset Master 5%-"), desc="Lower volume 5%"),
     # Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -D pulse sset Master 5%+"), desc="Raise volume 5%"),
     # Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -D pulse sset Master 5%-"), desc="Lower volume 5%"),
-    Key([mod], "f", lazy.spawn("thunar"), desc="Launch thunar file manager"),
+    Key([mod], "f", lazy.spawn("nautilus"), desc="Launch nautilus file manager"),
     Key([mod], "b", lazy.spawn("firefox"), desc="Launch firefox www browser"),
     Key([mod], "c", lazy.spawn("compton"), desc="Launch Compton"),
     Key([mod], "n", lazy.spawn("nitrogen --restore"), desc="Nitrogen restore wallpaper"),
@@ -186,8 +186,15 @@ screens = [
 				),
 				widget.Systray(),
 				widget.Image(
+					filename="~/.config/qtile/red_arrow.png",
+				),
+				widget.Battery(
+					background="#ff5555",
+					foreground="#282a36"
+				),
+					widget.Image(
 					filename="~/.config/qtile/blue_arrow.png",
-					background="#6272a4"
+					background="#ff5555"
 				),
 				widget.CPU(
 					foreground="#282a36", 
