@@ -79,10 +79,10 @@ keys = [
     # My own keybindings
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     Key([mod], "d", lazy.spawn("rofi -modi drun -show drun"), desc="Launch rofi"),
-    Key([mod], "F2", lazy.spawn("amixer -D pulse sset Master 5%+"), desc="Raise volume 5%"),
-    Key([mod], "F3", lazy.spawn("amixer -D pulse sset Master 5%-"), desc="Lower volume 5%"),
-    # Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -D pulse sset Master 5%+"), desc="Raise volume 5%"),
-    # Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -D pulse sset Master 5%-"), desc="Lower volume 5%"),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -D pulse sset Master 5%+"), desc="Raise volume 5%"),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -D pulse sset Master 5%-"), desc="Lower volume 5%"),
+    Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight -inc 5.00"), desc="Raise brightness 5%"),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -dec 5.00"), desc="Lower brightness 5%"),
     Key([mod], "f", lazy.spawn("nautilus"), desc="Launch nautilus file manager"),
     Key([mod], "b", lazy.spawn("firefox"), desc="Launch firefox www browser"),
     Key([mod], "c", lazy.spawn("compton"), desc="Launch Compton"),
@@ -202,35 +202,17 @@ screens = [
 					mouse_callbacks = {'Button1': lazy.spawn("gnome-terminal -e 'htop'")}
 				),
 				widget.Image(
-					filename="~/.config/qtile/black_arrow.png",
-					background="#8be9fd"
-				),
-				widget.CPUGraph(
-					type="line", 
-					graph_color="#8be9fd", 
-					background="#282a36"
-				),
-				widget.Image(
 					filename="~/.config/qtile/purple_arrow.png",
-					background="#282a36"
+					background="#8be9fd"
 				),
 				widget.Memory(
 					foreground="#282a36", 
 					background="#bd93f9",
 					mouse_callbacks = {'Button1': lazy.spawn("gnome-terminal -e 'htop'")}
-					),
-				widget.Image(
-					filename="~/.config/qtile/black_arrow.png",
-					background="#bd93f9",
-				),
-				widget.MemoryGraph(
-					type="line", 
-					graph_color="#bd93f9", 
-					background="#282a36"
 				),
 				widget.Image(
 					filename="~/.config/qtile/green_arrow.png",
-					background="#282a36"
+					background="#bd93f9"
 				),
 				widget.Clock(
 					format="%d/%m/%y %H:%M", 
