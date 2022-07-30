@@ -1,0 +1,8 @@
+import:
+ - ~/.config/alacritty/tomorrow-night.yml
+
+window:
+ opacity: 0.9
+
+font:
+ size: 10
