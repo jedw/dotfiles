@@ -1,0 +1,26 @@
+xterm*faceName: Monospace
+xterm*faceSize: 14
+
+xterm*foreground:   #DFDFDF
+xterm*background:   #1B2229
+xterm*cursorColor:  #9ca0a4
+xterm*color0:       #000000
+xterm*color1:       #ff6655
+xterm*color2:       #98be65
+xterm*color3:       #ECBE7B
+xterm*color4:       #51afef
+xterm*color5:       #a9a1e1
+xterm*color6:       #4db5bd
+xterm*color7:       #979797
+xterm*color8:       #3f3f3f
+xterm*color9:       #ff6c6b
+xterm*color10:      #b5bd68
+xterm*color11:      #f0c674
+xterm*color12:      #2257A0
+xterm*color13:      #c678dd
+xterm*color14:      #5699AF
+xterm*color15:      #ecebec
+
+xterm.vt100.translations: #override \n\
+	Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+	Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
