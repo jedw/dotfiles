@@ -1,0 +1,73 @@
+Config {
+
+	-- appearence
+	  font = "xft:Ubuntu:weight=bold:pixelsize=13:antialias=true:hinting=true"
+	, bgColor = "#232a36"
+	, fgColor = "#f8f8f2"
+	, position = Top
+	, border = BottomB
+	, borderColor = "#6272a4"
+
+	-- layout
+   	, sepChar =  "%"   -- delineator between plugin names and straight text
+   	, alignSep = "}{"  -- separator between left-right alignment
+   	, template = "%multicpu% | %coretemp% | %memory% | %dynnetwork% }{ %EGNH% |  %date%"
+
+   	-- general behavior
+   	, lowerOnStart =     True    -- send to bottom of window stack on start
+   	, hideOnStart =      False   -- start with window unmapped (hidden)
+   	, allDesktops =      True    -- show on all desktops
+   	, overrideRedirect = True    -- set the Override Redirect flag (Xlib)
+   	, persistent =       True    -- enable/disable hiding (True = disabled)
+
+	, commands = 
+
+	[Run Weather "EGNH" ["-t"
+			     ,"<station>: <tempF>°F"
+			     ,"-L"
+			     ,"64"
+			     ,"-H"
+			     ,"77"
+			     ,"--normal"
+			     ,"#50fa7b"
+			     ,"--high"
+			     ,"#ff5555"
+			     ,"--low"
+			     ,"#8be9fd"] 36000
+	-- dynnetwork
+	,Run DynNetwork     [ "--template" , "<dev>: <tx>kB/s|<rx>kB/s"
+                             , "--Low"      , "1000"       -- units: B/s
+                             , "--High"     , "5000"       -- units: B/s
+                             , "--low"      , "#50fa7b"
+                             , "--normal"   , "#ffb86c"
+                             , "--high"     , "#ff5555"
+                             ] 10
+
+        -- cpu activity monitor
+        , Run MultiCpu       [ "--template" , "Cpu: <total0>%|<total1>%"
+                             , "--Low"      , "50"         -- units: %
+                             , "--High"     , "85"         -- units: %
+                             , "--low"      , "#50fa7b"
+                             , "--normal"   , "#ffb86c"
+                             , "--high"     , "#ff5555"
+                             ] 10
+
+        -- cpu core temperature monitor
+        , Run CoreTemp       [ "--template" , "Temp: <core0>°C|<core1>°C"
+                             , "--Low"      , "70"        -- units: °C
+                             , "--High"     , "80"        -- units: °C
+                             , "--low"      , "#50fa7b"
+                             , "--normal"   , "#ffb86c"
+                             , "--high"     , "#ff5555"
+                             ] 50
+                          
+        -- memory usage monitor
+        , Run Memory         [ "--template" ,"Mem: <usedratio>%"
+                             , "--Low"      , "20"        -- units: %
+                             , "--High"     , "90"        -- units: %
+                             , "--low"      , "#50fa7b"
+                             , "--normal"   , "#ffb86c"
+                             , "--high"     , "#ff5555"
+                             ] 10
+	]
+}
