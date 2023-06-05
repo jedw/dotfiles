@@ -16,13 +16,21 @@ myStartupHook = do
 	spawn "compton --vsync opengl"
 	spawn "nitrogen --restore"
 
+myLayout = tiled ||| Mirror tiled ||| Full
+  where
+    tiled   = Tall nmaster delta ratio
+    nmaster = 1      -- Default number of windows in the master pane
+    ratio   = 1/2    -- Default proportion of screen occupied by master pane
+    delta   = 3/100  -- Percent of screen to increment by when resizing panes
+
 main = xmonad =<< xmobar myConfig
 
 myConfig = def {terminal 	= "kitty"
 	, modMask  	= mod4Mask
 	, borderWidth 	= 2
 	, startupHook 	= myStartupHook
-	, logHook = dynamicLog	
+	, logHook = dynamicLog
+	, layoutHook = myLayout	
 	}
 	`additionalKeysP`
 	[("M-r", spawn "rofi -modi 'drun' -show drun -show-icons")
