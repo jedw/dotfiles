@@ -29,11 +29,7 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 from libqtile import hook
-from libqtile.widget import CPUGraph
-from libqtile.widget import Memory
-from libqtile.widget import Image
-
-
+from libqtile.widget import CPUGraph, Memory, Image, PulseVolume, Wttr
 
 mod = "mod4"
 terminal = guess_terminal()
@@ -78,16 +74,17 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     # My own keybindings
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
-    Key([mod], "d", lazy.spawn("rofi -modi drun -show drun"), desc="Launch rofi"),
+    Key([mod], "d", lazy.spawn("rofi -modi drun -show drun -show-icons"), desc="Launch rofi"),
     Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -D pulse sset Master 5%+"), desc="Raise volume 5%"),
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -D pulse sset Master 5%-"), desc="Lower volume 5%"),
     Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight -inc 5.00"), desc="Raise brightness 5%"),
     Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -dec 5.00"), desc="Lower brightness 5%"),
-    Key([mod], "f", lazy.spawn("nautilus"), desc="Launch nautilus file manager"),
+    Key([mod], "f", lazy.spawn("pcmanfm"), desc="Launch pcmanfm file manager"),
     Key([mod], "b", lazy.spawn("firefox"), desc="Launch firefox www browser"),
-    Key([mod], "c", lazy.spawn("compton"), desc="Launch Compton"),
     Key([mod], "n", lazy.spawn("nitrogen --restore"), desc="Nitrogen restore wallpaper"),
     Key([mod, "shift"], "space", lazy.window.toggle_floating(), desc='Toggle floating'),
+    Key([mod], "c", lazy.spawn("picom"), desc="Launch Picom"),
+    Key([mod], "p", lazy.spawn("picom"), desc="Launch Picom"),
 ]
 
 groups = [Group(i) for i in "123456789"]
@@ -169,7 +166,7 @@ screens = [
 				widget.Image(
 					filename="~/.config/qtile/menu_icon.png",
 					background="#282a36",
-					mouse_callbacks = {'Button1': lazy.spawn("rofi -modi drun -show drun")}
+					mouse_callbacks = {'Button1': lazy.spawn("rofi -modi drun -show drun -show-icons")}
 				),
 				widget.GroupBox(
 					background="#282a36"
@@ -184,17 +181,17 @@ screens = [
 					},
 					name_transform=lambda name: name.upper(),
 				),
-				widget.Systray(),
+				widget.Systray(
+                ),
+                widget.Wttr(
+                    location={'Preston': 'Preston'},
+                    background="#ffb86c",
+                    foreground="#282a36",
+                    units="u"
+                ),
 				widget.Image(
-					filename="~/.config/qtile/red_arrow.png",
-				),
-				widget.Battery(
-					background="#ff5555",
-					foreground="#282a36"
-				),
-					widget.Image(
 					filename="~/.config/qtile/blue_arrow.png",
-					background="#ff5555"
+					background="#ffb86c"
 				),
 				widget.CPU(
 					foreground="#282a36", 
@@ -214,6 +211,11 @@ screens = [
 					filename="~/.config/qtile/green_arrow.png",
 					background="#bd93f9"
 				),
+                widget.TextBox(
+                    text='🕑',
+                    foreground="#282a36",
+                    background="50fa7b"
+                    ),
 				widget.Clock(
 					format="%d/%m/%y %H:%M", 
 					foreground="#282a36", 
@@ -224,7 +226,7 @@ screens = [
 					background="#50FA7B"
 				),
 				widget.TextBox(
-					text="\u266A",
+					text='🔊',
 					foreground="#282a36",
 					background="#F1FA8C",
 					mouse_callbacks = {'Button1': lazy.spawn("pavucontrol")}
@@ -232,7 +234,10 @@ screens = [
 				widget.PulseVolume(
 					fmt="{}", 
 					background="#F1FA8C", 
-					foreground="#282a36"
+					foreground="#282a36",
+                    device='default',
+                    emoji_list=['🔇', '🔈', '🔉', '🔊'],
+                    emoji=True
 				),
 				widget.Image(
 					filename="~/.config/qtile/red_arrow.png",
@@ -241,7 +246,7 @@ screens = [
 				widget.QuickExit(
 					foreground="#282a36", 
 					background="#ff5555", 
-					default_text="\u2169", 
+					default_text='✖',
 					countdown_format="[{}]"
 				),
             ],
@@ -301,3 +306,4 @@ def autostart():
 	lazy.spawn("firefox")
 	
 wmname = "LG3D"
+
